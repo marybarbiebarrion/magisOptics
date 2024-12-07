@@ -63,7 +63,6 @@
     .overview-section {
         padding: 2rem;
         background-color: white;
-        color: var(--primary);
         font-family: Arial, sans-serif;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -79,13 +78,17 @@
 
     .overview-section p {
         margin-bottom: 1rem;
-        font-size: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .overview-section ul {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
     }
 
     .about-model-section {
         padding: 2rem;
         background-color: white;
-        color: var(--primary);
         font-family: Arial, sans-serif;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -102,7 +105,12 @@
 
     .about-model-section p {
         margin-bottom: 1rem;
-        font-size: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .about-model-section ul {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
     }
 
     .upload-section {
@@ -138,6 +146,16 @@
 
     .upload-section input[type="file"] {
         display: none; 
+    }
+
+    .upload-section p {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .upload-section ul {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
     }
 
     .custom-file-btn {
@@ -181,6 +199,21 @@
     .upload-section button:hover {
         background-color: var(--secondary);
     }
+
+    .white-container {
+    background-color: #ffffff; 
+    padding: 20px;           
+    border-radius: 10px;     
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    margin: 20px auto;       
+    text-align: left;        
+    }
+
+    .center-title {
+    text-align: center;      
+    margin-bottom: 20px;     
+    }
+
 </style>
 {% endblock %}
 
@@ -194,44 +227,106 @@
     </div>
 </div>
 
+
+<!-- Overview Section -->
 <div id="overview" class="overview-section">
     <h2>Overview</h2>
-    <p>Diabetic Retinopathy (DR) is a microvascular complication of diabetes and is the leading cause of preventable blindness among working-age adults globally. It is estimated to affect over 93 million people worldwide, with the International Diabetes Federation projecting an alarming increase in the prevalence of diabetes to over 600 million cases by 2045.</p>
+    <p><strong>Understanding Diabetic Retinopathy</strong></p>
+    <p>
+        Diabetic Retinopathy (DR) is a complication of diabetes caused by damage to the blood vessels in the retina, 
+        potentially leading to vision loss if untreated. The condition progresses through different stages, from mild 
+        non-proliferative abnormalities to severe proliferative retinopathy, characterized by abnormal blood vessel growth.
+    </p>
 
-    <p>DR is caused by prolonged periods of hyperglycemia, which leads to damage to the retina's blood vessels. It progresses through five distinct stages: no DR, mild, moderate, severe, and proliferative DR, each reflecting varying degrees of vascular abnormalities and retinal damage. Early detection and timely treatment are crucial to mitigating vision loss, as studies have shown that blindness from DR can be reduced to as low as 5% with prompt intervention.</p>
+    <p><strong>0-4 Classification System</strong></p>
+    <ul>
+        <li><strong>0: No DR</strong> – Healthy retina with no signs of abnormalities.</li>
+        <li><strong>1: Mild</strong> – Microaneurysms are present.</li>
+        <li><strong>2: Moderate</strong> – Some blood vessels in the retina are blocked.</li>
+        <li><strong>3: Severe</strong> – Many blood vessels are blocked, disrupting blood supply to the retina.</li>
+        <li><strong>4: Proliferative</strong> – The most advanced stage, marked by abnormal blood vessel growth that can cause bleeding and retinal detachment.</li>
+    </ul>
 
-    <p>Despite the potential for intervention, the current diagnostic approach for DR heavily relies on manual evaluation by clinicians, requiring expertise and specialized equipment. This process involves examining digital color fundus photographs of the retina to identify specific pathological features, such as microaneurysms, hemorrhages, and exudates. However, this manual process is both time-consuming and resource-intensive, creating significant barriers to care, particularly in resource-limited settings.</p>
-
-    <p>To address these challenges, automated detection systems have emerged as a promising solution for DR classification. Recent advancements in machine learning, particularly deep learning, have demonstrated exceptional potential in medical image analysis. Convolutional Neural Networks (CNNs) have been extensively applied to DR detection, showing superior accuracy compared to traditional methods reliant on handcrafted feature extraction.</p>
-
-    <p>The group is committed to developing a basic prototype that could lay the groundwork for future advancements. While the current project will focus on achieving a modest accuracy target in the range of 30%-50%, the goal is to build a functional model that can demonstrate the potential of machine learning in assisting healthcare providers with the early detection of DR.</p>
+    <p></p>
+    <p><strong>Our Objectives</strong></p>
+    <p>
+        Our project aims to utilize artificial intelligence to automate the detection of DR and its classification based on 
+        these stages. By adopting ResNet-18, we provide a tool that aids in early diagnosis, helping healthcare providers 
+        intervene before the disease progresses further.
+    </p>
 </div>
 
+<!-- About Model Section -->
 <div id="about" class="about-model-section">
-    <h2>R2NET CNN</h2>
-    <p>This is where users can interact with the model. The system will allow users to upload retinal images, which will then be analyzed by the machine learning model. Once uploaded, the model will provide predictions based on the analysis of the image. The goal is to assist healthcare professionals in early detection, improving diagnosis accuracy, and ultimately reducing blindness caused by diabetic retinopathy.</p>
+    <h2>About the Model</h2>
+    <p><strong>Why ResNet-18 CNN?</strong></p>
+    <p></p>
+    <p>
+        Resnet-18 is a Convolutional Neural Network (CNN) architecture introduced in the Residual Networks (ResNet) family. 
+        It is a convolutional neural network that is 18 layers deep. It is a deep learning model designed for high-accuracy image classification. 
+        It uses residual learning to maintain performance even as network depth increases. This architecture makes it highly effective for medical image analysis.
+    </p>
 
-    <p>We are currently in the process of building and refining this model. The first iteration will have a limited accuracy, but it represents an important step in the development of an AI-based diagnostic tool. Users will be able to test this model with sample images and see how the system performs.</p>
-
-    <p>Stay tuned for future updates as we continue to improve the model's performance and expand its capabilities. Your feedback will be instrumental in helping us enhance the tool and contribute to the fight against preventable blindness.</p>
+    <p><strong>Why ResNet-18 for DR Classification?</strong></p>
+    <p></p>
+    <ul>
+        <li><strong>Efficiency:</strong> Its lightweight nature ensures fast processing and easy deployment.</li>
+        <li><strong>Accuracy:</strong> Pre-trained on ImageNet, it excels in recognizing complex retinal features like microaneurysms and hemorrhages.</li>
+        <li><strong>Adaptability:</strong> Its design aligns well with the 0-4 classification task, accurately differentiating stages based on visual patterns in the retina.</li>
+    </ul>
+    <p></p>
+    <p><strong>How It Works</strong></p>
+    <p></p>
+    <p>
+        The model processes retinal images through convolutional layers and residual blocks, extracting detailed features. Using 
+        this information, it predicts the disease stage (0-4), assisting in both early detection and detailed diagnosis.
+    </p>
 </div>
 
+<!-- Upload Section -->
 <div id="upload" class="upload-section">
     <img id="building1" src="{% static 'img/buildings.png' %}" alt="Background Building" />
    
-    <h2>Try the Model</h2>
+    <div class="white-container">
+        <h2 class="center-title">Try the Model</h2>
+        <p></p>
+        <p><strong>Test the Prediction Capability</strong></p>
+
+        <p>
+            Experience the power of AI in detecting and classifying Diabetic Retinopathy. Upload a retinal image and see the model's 
+            prediction based on the 0-4 classification system.
+        </p>
+        <p></p>
+        <p><strong>Instructions:</strong></p>
+        <ul>
+            <li>Ensure the image is in JPEG or PNG format.</li>
+            <li>Click the "Upload Image" button to select your retinal image.</li>
+            <li>Wait for the model to process the image and display the classification stage (0-4).</li>
+        </ul>
+
+        <p></p>
+        <p><strong>Stage Explanation:</strong></p>
+        <ul>
+            <li><strong>0:</strong> No signs of DR.</li>
+            <li><strong>1:</strong> Mild stage, initial signs detected.</li>
+            <li><strong>2:</strong> Moderate stage, some vessel blockages identified.</li>
+            <li><strong>3:</strong> Severe stage, widespread vessel blockages observed.</li>
+            <li><strong>4:</strong> Proliferative stage, abnormal vessel growth detected.</li>
+        </ul>
+
+        <p></p>
+        <p><strong>Disclaimer:</strong> The predictions are for research purposes and are not a substitute for clinical diagnosis. 
+            Please consult a healthcare professional for medical advice.</p>
+    </div>
+
     <form method="POST" enctype="multipart/form-data" action="{% url 'image_upload' %}">
         {% csrf_token %}
-
         <div class="file-name-container">
             <label for="file-upload" class="custom-file-btn">Choose File</label>
             <input type="file" name="image" id="file-upload" onchange="updateFileNameAndPreview()">
-            
             <div id="file-name-display" class="file-name"></div>
         </div>
-
         <img id="image-preview" class="image-preview" style="display: none;" />
-
         <button class="button primary filled" type="submit">Predict</button>
     </form>
 </div>
