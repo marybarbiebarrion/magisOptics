@@ -1,17 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
-</head>
-<body>
-    <h1>Diabetic Retinopathy Prediction</h1>
-    {% if prediction %}
-        <p><strong>Predicted Class:</strong> {{ prediction }}</p>
-    {% else %}
-        <p><strong>Error:</strong> No prediction could be made. Please try again.</p>
-    {% endif %}
-    <a href="{% url 'image_upload' %}">Upload another image</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Prediction Result - Magis Optics{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        background-color: var(--tertiary-01);
+        margin: 0;
+        position: relative;
+    }
+
+    #building {
+        position: absolute;
+        z-index: -1; 
+        bottom: 40px; 
+        left: 0; 
+        width: 100vw; 
+        height: 60vh; 
+        object-fit: cover; 
+    }
+
+    .result-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .result-section .text-container {
+        padding: 2rem; 
+        background-color: #ffffff; 
+        border-radius: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 80%; 
+        max-width: 600px; 
+        margin-top: 2rem; 
+    }
+
+    .result-section h1 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .result-section p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .result-section a {
+        color: var(--primary);
+        text-decoration: none; 
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+
+    .result-section a:hover {
+        text-decoration: none; 
+        background-color: var(--secondary);
+    }
+
+    .upload-button-container {
+        margin-top: 2rem;
+    }
+
+    .upload-button-container a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem; 
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .upload-button-container a:hover {
+        background-color: var(--secondary);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="result-section">
+    <img id="building" src="{% static 'img/buildings.png' %}" alt="Background Building" />
+    
+    <div class="text-container">
+        <h1>Diabetic Retinopathy Prediction</h1>
+        {% if prediction %}
+            <p><strong>Predicted Class:</strong> {{ prediction }}</p>
+        {% else %}
+            <p><strong>Error:</strong> No prediction could be made. Please try again.</p>
+        {% endif %}
+    </div>
+
+    <div class="upload-button-container">
+        <a href="{% url 'image_upload' %}" class="button primary filled">
+            Upload Another Image
+        </a>
+    </div>
+</div>
+{% endblock %}

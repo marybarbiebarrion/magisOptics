@@ -1,13 +1,264 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
 
-<h2>Upload Image</h2>
-<form method="POST" enctype="multipart/form-data" action="{% url 'image_upload' %}">
-    {% csrf_token %}
-    <input type="file" name="image">
-    <button type="submit">Upload</button>
-</form>
+{% load static %}
 
-</body>
-</html>
+{% block title %}Image Upload - Magis Air{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        background-color: var(--tertiary-01);
+        margin: 0;
+    }
+
+    #building {
+        position: absolute;
+        z-index: -1; 
+        bottom: 40px; 
+        left: 0; 
+        width: 100vw; 
+        height: 60vh; 
+        object-fit: cover; 
+    }
+
+    #building1 {
+        position: absolute;
+        z-index: -1; 
+        bottom: 500px; 
+        left: 0; 
+        width: 100vw; 
+        height: 60vh; 
+        object-fit: cover; 
+    }
+
+    .home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .hometxt {
+        flex: 1;
+        padding-left: 6rem;
+        padding-bottom: 8rem;
+        margin-left: 40px;
+        text-align: center;
+    }
+
+    .hometxt .header {
+        color: var(--primary);
+        font-size: var(--h1-font-size);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .hometxt p {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .overview-section {
+        padding: 2rem;
+        background-color: white;
+        color: var(--primary);
+        font-family: Arial, sans-serif;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 2rem;
+        text-align: justify;
+    }
+
+    .overview-section h2 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .overview-section p {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .about-model-section {
+        padding: 2rem;
+        background-color: white;
+        color: var(--primary);
+        font-family: Arial, sans-serif;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 2rem;
+        text-align: justify;
+        margin-top: 4rem; 
+    }
+
+    .about-model-section h2 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .about-model-section p {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative; 
+    }
+
+    .upload-section h2 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    #building1 {
+        position: absolute; 
+        z-index: -1;  
+        bottom: 0;    
+        left: 0;
+        width: 100%;  
+        height: 60%;  
+        object-fit: cover;
+    }
+
+    .upload-section form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upload-section input[type="file"] {
+        display: none; 
+    }
+
+    .custom-file-btn {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    .custom-file-btn:hover {
+        background-color: var(--secondary);
+    }
+
+    .file-name-container {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+    }
+
+    .file-name {
+        font-size: 1rem;
+        color: var(--primary);
+        margin-left: 10px; 
+        display: none;
+    }
+
+    .image-preview {
+        margin-top: 1rem;
+        max-width: 300px; 
+        max-height: 300px;
+    }
+
+    .upload-section button {
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    .upload-section button:hover {
+        background-color: var(--secondary);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="home">
+    <img id="building" src="{% static 'img/buildings.png' %}" alt="Background Building" />
+    
+    <div class="hometxt">
+        <h1 class="header">Welcome to MAGIS OPTICS</h1>
+        <p><strong>Your Vision, Our Magis</strong></p>
+    </div>
+</div>
+
+<div id="overview" class="overview-section">
+    <h2>Overview</h2>
+    <p>Diabetic Retinopathy (DR) is a microvascular complication of diabetes and is the leading cause of preventable blindness among working-age adults globally. It is estimated to affect over 93 million people worldwide, with the International Diabetes Federation projecting an alarming increase in the prevalence of diabetes to over 600 million cases by 2045.</p>
+
+    <p>DR is caused by prolonged periods of hyperglycemia, which leads to damage to the retina's blood vessels. It progresses through five distinct stages: no DR, mild, moderate, severe, and proliferative DR, each reflecting varying degrees of vascular abnormalities and retinal damage. Early detection and timely treatment are crucial to mitigating vision loss, as studies have shown that blindness from DR can be reduced to as low as 5% with prompt intervention.</p>
+
+    <p>Despite the potential for intervention, the current diagnostic approach for DR heavily relies on manual evaluation by clinicians, requiring expertise and specialized equipment. This process involves examining digital color fundus photographs of the retina to identify specific pathological features, such as microaneurysms, hemorrhages, and exudates. However, this manual process is both time-consuming and resource-intensive, creating significant barriers to care, particularly in resource-limited settings.</p>
+
+    <p>To address these challenges, automated detection systems have emerged as a promising solution for DR classification. Recent advancements in machine learning, particularly deep learning, have demonstrated exceptional potential in medical image analysis. Convolutional Neural Networks (CNNs) have been extensively applied to DR detection, showing superior accuracy compared to traditional methods reliant on handcrafted feature extraction.</p>
+
+    <p>The group is committed to developing a basic prototype that could lay the groundwork for future advancements. While the current project will focus on achieving a modest accuracy target in the range of 30%-50%, the goal is to build a functional model that can demonstrate the potential of machine learning in assisting healthcare providers with the early detection of DR.</p>
+</div>
+
+<div id="about" class="about-model-section">
+    <h2>R2NET CNN</h2>
+    <p>This is where users can interact with the model. The system will allow users to upload retinal images, which will then be analyzed by the machine learning model. Once uploaded, the model will provide predictions based on the analysis of the image. The goal is to assist healthcare professionals in early detection, improving diagnosis accuracy, and ultimately reducing blindness caused by diabetic retinopathy.</p>
+
+    <p>We are currently in the process of building and refining this model. The first iteration will have a limited accuracy, but it represents an important step in the development of an AI-based diagnostic tool. Users will be able to test this model with sample images and see how the system performs.</p>
+
+    <p>Stay tuned for future updates as we continue to improve the model's performance and expand its capabilities. Your feedback will be instrumental in helping us enhance the tool and contribute to the fight against preventable blindness.</p>
+</div>
+
+<div id="upload" class="upload-section">
+    <img id="building1" src="{% static 'img/buildings.png' %}" alt="Background Building" />
+   
+    <h2>Try the Model</h2>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'image_upload' %}">
+        {% csrf_token %}
+
+        <div class="file-name-container">
+            <label for="file-upload" class="custom-file-btn">Choose File</label>
+            <input type="file" name="image" id="file-upload" onchange="updateFileNameAndPreview()">
+            
+            <div id="file-name-display" class="file-name"></div>
+        </div>
+
+        <img id="image-preview" class="image-preview" style="display: none;" />
+
+        <button class="button primary filled" type="submit">Predict</button>
+    </form>
+</div>
+
+<script>
+    function updateFileNameAndPreview() {
+        var input = document.getElementById('file-upload');
+        var fileName = input.files.length > 0 ? input.files[0].name : '';
+        var fileNameDisplay = document.getElementById('file-name-display');
+        
+        if (fileName) {
+            fileNameDisplay.textContent = 'Selected file: ' + fileName;
+            fileNameDisplay.style.display = 'block';
+        } else {
+            fileNameDisplay.style.display = 'none';
+        }
+
+        var imagePreview = document.getElementById('image-preview');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.style.display = 'block';
+                imagePreview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+{% endblock %}
